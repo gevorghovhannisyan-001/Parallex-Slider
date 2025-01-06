@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.0.5/flickity.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Parallex Slider with Flickity</title>
+</head>
+<body>
+    <div class="hero-slider" carousel>
+        <div class="carousel-cell"
+        style="background-image: url(1.jpg);"
+        >
+            <div class="gradient"></div>
+            <div class="info-container">
+                <h3 class="header">First Slide</h3>
+                <h2 class="text">Parallex Slider</h2>
+                <button>Getting Started</button>
+            </div>
+        </div>
+        <div class="carousel-cell"
+        style="background-image: url(2.jpg);"
+        >
+            <div class="gradient"></div>
+            <div class="info-container">
+                <h3 class="header">Second Slide</h3>
+                <h2 class="text">Parallex Slider</h2>
+                <button>Getting Started</button>
+            </div>
+        </div>
+        <div class="carousel-cell"
+        style="background-image: url(3.jpg);"
+        >
+            <div class="gradient"></div>
+            <div class="info-container">
+                <h3 class="header">Third Slide</h3>
+                <h2 class="text">Parallex Slider</h2>
+                  <button>Getting Started</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.0.5/flickity.pkgd.min.js"></script>
+    <script>
+        const options = {
+                accessibility: true, 
+                prevNextButtons: true,
+                pageDots: true,
+                setGallerySize: false,
+                arrowShape: {
+                    x0: 1,
+                    x1: 58,
+                    y1: 62,
+                    x2: 55, 
+                    y2: 48,
+                    x3: 18
+                }
+            };
+
+            // Function to set background position for slides
+            function setBgPosition(slide, index) {
+                const x = -(slide.target + flkty.x) / 3;
+                slides[index].style.backgroundPosition = `${x}px`;
+            }
+
+            // Slides initialization
+            const carousel = document.querySelector('[carousel]'),
+                slides = Array.from(document.getElementsByClassName('carousel-cell'));
+            const flkty = new Flickity(carousel, options);
+
+            // Event listener using bg position
+            flkty.on('scroll', () => {
+                flkty.slides.forEach(setBgPosition);
+            })
+    </script>
+</body>
+</html>
